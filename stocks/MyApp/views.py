@@ -11,17 +11,21 @@ from nsepy import get_history
 from datetime import date
 import json
 
+
+@api_view(["GET"])
+def Health(req):
+    return JsonResponse("Server Running", safe=False)
+
+
 @api_view(["POST"])
 def GetData(req):
     try:
-        print(req)
-        a = ["INFY", "SBIN"]  # stock name
-        for i in (a):
+        data = json.loads(req.body)
+        stock = data["stock"]
+        for i in ([stock]):
             data = get_history(symbol=i, start=date(2021, 8, 17), end=date(2021, 9, 17))  # duration
-            print(data.get("Last"))
-            print("*****************************************************************************")
-            return JsonResponse("hello world",safe=False)
-            # return JsonResponse( data.get("Last"),safe=False)
+        print(data.get("Last"))
+        print("*****************************************************************************")
+        return JsonResponse("Calculating", status=status.HTTP_200_OK, safe=False)
     except Exception as e:
         return e
-# Create your views here.
