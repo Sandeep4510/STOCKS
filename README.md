@@ -1,2 +1,4 @@
-# STOCKS
-View the data from this endpoint
+# MongoDB + DJango + ReactJS
+
+Fetching stock data from python lib 'nsepy'
+[NOTE: this is only valid for india]
